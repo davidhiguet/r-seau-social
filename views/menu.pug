@@ -1,0 +1,33 @@
+.container
+    button.navbar-toggler.navbar-toggler-right.text-uppercase.bg-primary.text-white.rounded(type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation")
+        | Menu &ensp;
+        i.fa.fa-bars
+    #navbarResponsive.collapse.navbar-collapse
+        ul.navbar-nav.ml-auto
+        if (!user || auth) 
+            li.nav-item.mx-0.mx-lg-3
+                a.nav-link.py-3.px-0.px-lg-3.rounded.js-scroll-trigger(href="/") ACCUEIL
+            li.nav-item.mx-0.mx-lg-3
+                a.nav-link.py-3.px-0.px-lg-3.rounded.js-scroll-trigger(href="/profile") Connection
+            li.nav-item.mx-0.mx-lg-3
+                a.nav-link.py-3.px-0.px-lg-3.rounded.js-scroll-trigger(href="/inscription") Inscription
+        if (user && !auth)
+            if (!friend ) 
+                li.nav-item.mx-0.mx-lg-3
+                    a.nav-link.py-3.px-0.px-lg-3.rounded.js-scroll-trigger(href="/profile/acceuil/"+user._id) ACCUEIL
+                li.nav-item.mx-0.mx-lg-3
+                    a.nav-link.py-3.px-0.px-lg-3.rounded.js-scroll-trigger(href="/profile/back/"+user._id) MON PROFILE
+                li.nav-item.mx-0.mx-lg-3
+                    a.nav-link.py-3.px-0.px-lg-3.rounded.js-scroll-trigger(href="/profile/messagerie/"+user._id) MESSAGERIE INSTANTANEE
+                li.nav-item.mx-0.mx-lg-3
+                    a.nav-link.py-3.px-0.px-lg-3.rounded.js-scroll-trigger(href="/profile/messagerieprivee/"+user._id) MESSAGERIE PRIVEE
+                li.nav-item.mx-0.mx-lg-3
+                    .button2
+                        a(href="/profile/logout")
+                            | DECONNEXION
+            if (friend)
+                li.nav-item.mx-0.mx-lg-3
+                    a.nav-link.py-3.px-0.px-lg-3.rounded.js-scroll-trigger(href="/profile/monProfile/") MON PROFILE
+            
+                
+            

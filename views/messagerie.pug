@@ -1,0 +1,36 @@
+extends layout
+
+block content
+  .container
+    section.row.messagerie
+      article.col-md-12.text-center
+        h2.title MESSAGERIE
+      article.col-md-6.text-center
+        hr
+        h3 LISTE DES MEMBRES
+        hr
+        
+        ul#messagerieList
+      article.col-md-6.text-center
+        h5#mred.red
+        #play
+          h5#red.red
+          input#btnDeconnection(type='button' value='DECONNECTION' onclick="functions.remove()")
+          #rendu
+            ul#messageLive
+              li#listeMessage
+            h2#waitingMessage Patientez
+            h3#messageError.red 
+            h3#message   
+        
+          form#formulaire(name='monform' method='post')
+
+            input#pseudo(type='hidden' name='pseudo', value=user.pseudonyme)
+            br
+            label(for='text') Rentrez votre message
+            input#texte(type='text' name='texte')
+            br
+            input#btn2(type='submit' value='envoyer')
+      script(src="/socket.io/socket.io.js")
+      script(src='/javascripts/socketMessagerie.js')
+    

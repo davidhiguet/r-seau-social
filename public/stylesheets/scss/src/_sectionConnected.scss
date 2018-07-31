@@ -1,0 +1,476 @@
+//section game
+.homeConnected{
+background-color: $colorOne;
+@include shadow2;
+border-radius: 10px;
+padding: 15px;
+margin-bottom: 150px;
+margin-top: 246px;
+max-height: 1400px;
+
+    article:first-of-type{
+    background-color: $color3;
+    color: white;
+    border-radius: 10px;
+    @include shadow;
+    padding-bottom: 10px;
+    padding-top: 10px;
+        .image{
+            margin-top: 10px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 200px;
+            height: 200px;
+            background-position: center center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            border: #007bff 5px solid;
+        }
+        div{
+        margin: 0 auto;
+            .button{
+            width: 70%;
+            @include shadow;
+            border-radius: 10px;
+            margin-bottom: 15px; 
+            text-align: center;
+            &:first-of-type{
+                background-color: rgb(60, 211, 105); 
+            }
+            &:nth-child(2){
+                background-color: rgb(219, 77, 77);
+            }
+            &:hover{
+                @include shadow2;
+                color: black;
+            }
+                a{
+                    color: white;
+                    &:hover{
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+        ul{
+        padding: 0;
+            li{
+                list-style-type: none;
+                h5{
+                    color:#007bff;
+                    //font-style: italic;
+                    font-family: 'robotothin';
+                }
+                &:first-of-type{
+                    text-align: center;
+                }
+            }
+            .displayFlex{
+                display: flex;
+                text-align: center;
+                margin: 0 auto;
+            }
+        }
+    }
+    article:nth-child(2){
+        overflow: scroll;
+        .display{
+            display: flex;
+            width: 100%;
+            h3{
+               color: #007bff; 
+            }
+            .friendSearch{
+                width: 50%;
+                text-align: center;
+                input, textarea{
+                    width: 92%;
+                    //padding: 1em 1em 1em 1em;
+                    font-size: 0.8em;
+                    margin: 1em 0;
+                    outline: none;
+                    color: black;
+                    border: none;
+                    letter-spacing: 1px;
+                    text-align:center;
+                    border-radius: 5px!important;
+                    background-color:white;
+                    &:focus, &:active { 
+                        background-color: white;
+                    }
+                }
+                ::-webkit-input-placeholder{
+                    color:$colorPoliceTwo;
+                }
+                .title{
+                text-align: center;
+                    input[type="submit"] {
+                        outline: none;
+                        width: 50%;
+                        height: 26px;
+                        text-align: center;
+                        font-size: 1em;
+                        margin-top: 1em;
+                        border: none;
+                        color: $colorPoliceTwo;
+                        cursor: pointer;
+                        box-shadow: 0px 2px 1px rgba(28, 28, 29, 0.42);
+                        border-radius: 22px;
+                        @include shadow;
+                        &:hover{
+                            @include shadow2;
+                            background-color: #007bff;
+                            color:white;
+                        }
+                    }
+                }
+            
+                #affichageResult{
+                max-width: 500px;
+                padding: 0;
+                margin:0 auto;
+                text-align:center;
+                
+                    .listeSearch{
+                    list-style-type: none;
+                    height: 30px;
+                    border-radius: 5px!important;
+                    background-color: white;
+                    color: #007bff;
+                    padding: 0;
+                    margin-bottom: 2px;
+                    display: flex;
+                    position: relative;
+                        .image{
+                            float: left;
+                            margin-left: 0;
+                            margin-right: 45px;
+                            width: 30px;
+                            height: 28px;
+                            background-repeat: no-repeat;
+                            background-position: center center;
+                            background-size: contain;
+                            border-radius: 1px;
+                        }
+                        h6{
+                            margin-top: 5px;
+                            padding-right: 5px;
+                            max-width: 200px;
+                        }
+                        .buttonAsk, .buttonWait, .buttonRefuse, .buttonFriends{
+                            position: absolute;
+                            right: 2px;
+                            margin-top: 3px;
+                            color: black!important;
+                            width: 100px;
+                            &:hover{
+                                @include shadow2;
+                                background-color: #007bff;
+                                color:white!important;
+                            }
+                        }
+                        .buttonAccept{
+                            position: absolute;
+                            right: 103px;
+                            margin-top: 3px;
+                            color: black!important;
+                            width: 100px;
+                            &:hover{
+                                @include shadow2;
+                                background-color: #007bff;
+                                color:white!important;
+                            }
+                        }
+                        .buttonAccept{
+                            background-color: rgb(188, 255, 205);
+                        }
+                        .buttonAsk{
+                            background-color: rgb(177, 174, 174);
+                        }
+                        .buttonWait{
+                            background-color: #007bff;
+                        }
+                        .buttonRefuse{
+                            background-color: rgb(247, 185, 185);
+                        }
+                        .buttonFriends{
+                            background-color: white;
+                            @include shadow2; 
+                            color: black;
+                            &:hover{
+                                background-color: white;
+                                @include shadow2; 
+                                color: black!important;
+                            }
+                        }
+                    }
+                    
+                } 
+            }
+            .friends{
+                width: 50%;
+                text-align: center;
+                #affichageListReceived, #affichageFriendsList{
+                max-width: 500px;
+                padding: 0;
+                margin:0 auto;
+                text-align:center;
+                
+                    .listeFriends, .listeReceived{
+                    list-style-type: none;
+                    height: 30px;
+                    border-radius: 5px!important;
+                    padding: 0;
+                    margin-bottom: 2px;
+                    display: flex;
+                    position: relative;
+                    @include shadow;
+                        .image{
+                            float: left;
+                            margin-left: 0;
+                            margin-right: 45px;
+                            width: 30px;
+                            height: 28px;
+                            background-repeat:no-repeat;
+                            background-position: center center;
+                            background-size: cover;
+                            border-radius: 1px;
+                        }
+                        h6{
+                            margin-top: 5px;
+                            padding-right: 5px;
+                            max-width: 200px;
+                        }
+                        .buttonRefuse, .buttonRemove{
+                            position: absolute;
+                            border-color : none;
+                            right: 0;
+                            color: white;
+                            border-radius: 5px!important;
+                            
+                            @include shadow;
+                            &:hover{
+                                @include shadow2;
+                                background-color: white;
+                                color:red!important;
+                            }
+                        }
+                        .buttonAccept,.buttonProfile{
+                            position: absolute;
+                            right: 94px;
+                            margin-top: 2px;
+                            border-radius: 5px!important;
+                            color: white;
+                            width: 60px;
+                            @include shadow;
+                            &:hover{
+                                @include shadow2;
+                                background-color: white;
+                                color:#007bff!important;
+                            }
+                        }
+                        .buttonAccept{
+                            background-color: rgb(188, 255, 205);
+                            border: none;
+                            color: black!important;
+                            right: 66px;
+                            &:hover{
+                                color:rgb(49, 190, 80)!important;
+                            }
+                        }
+                        .buttonAsk{
+                            background-color: rgb(214, 210, 210);
+                            border: none;
+                        }
+                        .buttonProfile{
+                            background-color:  rgb(177, 174, 174);
+                            border: none;
+                        }
+                        .buttonRemove{
+                            background-color: rgb(243, 20, 20);
+                            border: none;
+                            
+                        }
+                        .buttonRefuse{
+                            color: black!important;
+                            background-color: rgb(247, 185, 185);
+                            border: none;
+                                width: 60px;
+                        } 
+                    }  
+                }
+                #affichageListReceived{
+                    .listeReceived{
+                        background-color: white;
+                        color: #007bff;
+                        border: white solid 1px;
+                    } 
+                }
+                #affichageFriendsList{
+                    .listeFriends{
+                        background-color: white;
+                        color: #007bff;
+                        border: #007bff solid 1px;
+                    }
+                }
+
+            }
+        }
+        
+        #messagePart{
+            border-radius: 5px!important;
+            margin-top: 10px;
+            width : 100%;
+            text-align: center;
+            h4{
+                text-align: center;
+                margin: 0 auto;
+                padding-top: 10px;
+            }
+            input[type="submit"] {
+                outline: none;
+                width: 50%;
+                height: 26px;
+                text-align: center;
+                font-size: 0.5em;
+                margin-top: 1em;
+                border: none;
+                background-color: #007bff;
+                cursor: pointer;
+                box-shadow: 0px 2px 1px rgba(28, 28, 29, 0.42);
+                border-radius: 22px;
+                //@include shadow;
+                color:white;
+                &:hover{
+                    @include shadow2;
+                    
+                    background-color: white;
+                    color: $colorPoliceTwo;
+                }
+            }
+            #affichageMessageList{
+                max-width: 500px;
+                padding: 0;
+                margin:0 auto;
+                text-align:center;
+                margin-top: 10px;
+                .listMessage{
+                list-style-type: none;
+                border-radius: 5px!important;
+                padding: 0;
+                margin-bottom: 10px;
+                position: relative;
+                @include shadow;
+                background-color: white;
+                    .image{
+                        float: left;
+                        margin-left: 0;
+                        width: 30px;
+                        height: 28px;
+                        background-repeat:no-repeat;
+                        background-position: center center;
+                        background-size: cover;
+                        border-radius: 1px;
+                    }
+                    h6{
+                        background-color: #007bff;
+                        min-height: 28px;
+                        margin-top: 5px;
+                        padding-top: 5px;
+                        max-width: 100%;
+                        color: white;
+                    }
+                    .commentaire{
+                        width: 100%;
+                        background-color: grey;
+
+                    }
+                }
+            }
+
+        }
+       
+    }
+    
+}
+
+    #affichageMemberList{
+    max-height: 200px;
+    padding: 0;
+    margin:0 auto;
+    text-align:center;
+    max-width: 300px;
+    overflow: scroll;
+        .listeMember{
+            list-style-type: none;
+            height: 30px;
+            border-radius: 5px!important;
+            padding: 0;
+            margin-bottom: 2px;
+            display: flex;
+            position: relative;
+            background-color: red;
+            @include shadow;
+            .image{
+                float: left;
+                margin-left: 0;
+                margin-right: 45px;
+                width: 30px;
+                height: 28px;
+                background-repeat:no-repeat;
+                background-position: center center;
+                background-size: cover;
+                border-radius: 1px;
+            }
+            h6{
+                margin-top: 5px;
+                padding-right: 5px;
+            }
+            .buttonProfile{
+                position: absolute;
+                margin-top: 2px;
+                right: 94px;
+                border-radius: 5px!important;
+                color: black;
+                background-color: white;
+                width: 60px;
+                @include shadow;
+                &:hover{
+                    @include shadow2;
+                    background-color: white;
+                    color:#007bff!important;
+                }
+            }
+            .delete{
+                position: absolute;
+                border-color : none;
+                right: 0;
+                color: red;
+                border-radius: 5px!important;
+                
+                @include shadow;
+                &:hover{
+                    @include shadow2;
+                    background-color: white;
+                    color:red!important;
+                }
+            }
+        }
+    }
+
+.buttonShare{
+    position: absolute;
+    right: 2px;
+    color: black!important;
+    width: 100px;
+    background-color: rgb(214, 210, 210);
+    border: none;
+    text-align: center;
+    border-radius: 5px!important;
+    @include shadow;
+    &:hover{
+        @include shadow2;
+        background-color: #007bff;
+        color:white!important;
+    }
+}

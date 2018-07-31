@@ -1,0 +1,12 @@
+extends layout
+
+block content
+    .container
+        section.row.homeConnected
+            article.col-lg-3.col-md-4.col-sm-5
+                include informations.pug
+            article.col-lg-9.col-md-8.col-sm-7.text-center
+                include friendsPart.pug
+                include messagePart.pug
+        script(src="/socket.io/socket.io.js")
+        script(src='/javascripts/socketClient.js')           

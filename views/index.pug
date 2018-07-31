@@ -1,0 +1,44 @@
+extends layout
+
+block content
+  .container
+      section.row.home
+        article.col.text-center
+          h4 Le Réseau social pour parler des meilleurs rôles vu au cinéma.
+          hr
+          if ( !user )
+            h5.acces ACCES
+            a.lien(href="/profile")
+              | Page de connection
+            br
+            a.lien(href="/inscription")
+              | page d'inscription
+          hr
+          if (globalProperty)
+            h6.acces= "Il y a "+ globalProperty.connected + " membres qui est/sont connecté/s."
+            h6.acces= "Il y a "+ globalProperty.messages + " messages qui ont été publier."
+          br
+          #carouselExampleIndicators.carousel.slide(data-ride='carousel')
+            ol.carousel-indicators
+              li.active(data-target='#carouselExampleIndicators', data-slide-to='0')
+              li(data-target='#carouselExampleIndicators', data-slide-to='1')
+              li(data-target='#carouselExampleIndicators', data-slide-to='2')
+            .carousel-inner
+              .carousel-item.active
+                img.d-block.w-100(src='/images/pic/images-2.jpeg', alt='First slide')
+                .carousel-caption.d-none.d-md-block
+                  h5 LE ROI LION
+              .carousel-item
+                img.d-block.w-100(src='/images/pic/images.jpeg', alt='Second slide')
+                .carousel-caption.d-none.d-md-block
+                  h5 INDIANA JONES
+              .carousel-item
+                img.d-block.w-100(src='images/pic/red.jpg', alt='Third slide')
+                .carousel-caption.d-none.d-md-block
+                  h5 ...
+            a.carousel-control-prev(href='#carouselExampleIndicators', role='button', data-slide='prev')
+              span.carousel-control-prev-icon(aria-hidden='true')
+              span.sr-only Previous
+            a.carousel-control-next(href='#carouselExampleIndicators', role='button', data-slide='next')
+              span.carousel-control-next-icon(aria-hidden='true')
+              span.sr-only Next

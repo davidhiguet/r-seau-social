@@ -1,0 +1,65 @@
+//game Part
+@media  screen and (max-width: 991px){ 
+    #game{
+        top: 50px;
+    }
+    .consigne{
+        overflow: hidden;
+        font-size: 25px;
+        width: 100%
+    }
+    .lifeBar{
+       top: 55px!important;
+    }
+    .friendSearch, .friends{
+        width: 100%!important;
+    }
+    .display{
+        display: block!important;
+    }
+}
+@media  screen and (max-width: 478px){ 
+    .rules{
+        p{
+        font-size: 15px;
+        }
+    }
+}
+
+@media  screen and (max-width: 568px){ 
+    .information{
+    max-height: 300px!important;
+    overflow: scroll;
+    }
+    h1{
+        font-size:2em;
+    }
+}
+
+// cv part 
+@media  screen and (max-width: 727px){ 
+    nav{
+        a:first-of-type{
+        top: 5px!important;
+        left: 5px!important;
+        width: 50px;
+        height: 25px;
+        border-radius : 10px;
+        line-height: 25px;
+        }
+        h1{
+        font-size: 30px;
+        }
+    }
+    article:nth-of-type(7), article:nth-of-type(8){ 
+        margin-top: 20px;
+        text-align: center!important;
+    }
+
+    #hideShow{
+        img{
+            width: 20%;
+            left: 0;
+        }
+    }
+}

@@ -1,0 +1,25 @@
+@mixin shadow{
+    -moz-box-shadow: 5px 5px 37px rgba(0, 0, 0, 0.6);
+    -webkit-box-shadow: 5px 5px 37px rgba(0, 0, 0, 0.6);
+    box-shadow: 5px 5px 37px rgba(0, 0, 0, 0.6);
+}
+@mixin arrondi{
+    -webkit-border-radius: $dimRadius;
+    -moz-border-radius: $dimRadius;
+    border-radius: $dimRadius;
+}
+@mixin shadow2{
+    -moz-box-shadow: inset 0 5px 42px  rgba(0,0,0,0.5);
+    -webkit-box-shadow: inset 0 5px 42px  rgba(0,0,0,0.5);
+    box-shadow: inset 0 5px 42px  rgba(0,0,0,0.5);
+}
+@mixin shadow4{
+    -moz-box-shadow: inset 0 5px 42px  rgba(255, 255, 255, 0.6);
+    -webkit-box-shadow: inset 0 5px 42px  rgba(255, 255, 255, 0.6);
+    box-shadow: inset 0 5px 42px  rgba(255, 255, 255, 0.6);
+}
+@mixin shadow3{
+    -moz-box-shadow: 5px 5px 37px rgba(0, 0, 0, 0.7);
+    -webkit-box-shadow: 5px 5px 37px rgba(0, 0, 0, 0.7);
+    box-shadow: 5px 5px 37px rgba(0, 0, 0, 0.7);
+}

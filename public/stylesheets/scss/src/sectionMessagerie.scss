@@ -1,0 +1,257 @@
+.messagerie{
+background-color: $colorOne;
+@include shadow2;
+border-radius: 10px;
+padding: 15px;
+margin-bottom: 150px;
+margin-top: 246px;
+max-height: 1400px;
+    article:first-of-type{
+        .title{
+            color: #007bff!important;
+        }
+    }
+    article:nth-child(2), article:nth-child(3){
+        
+    background-color: $color3;
+    color: white;
+    border-radius: 10px;
+    @include shadow;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    padding-top: 10px;            
+             #messagerieList{
+            max-width: 500px;
+            padding: 0;
+            margin:0 auto;
+            text-align:center;
+            max-width: 600px;
+            overflow: scroll;
+                .listeMessagerie{
+                list-style-type: none;
+                height: 30px;
+                border-radius: 5px!important;
+                padding: 0;
+                margin-bottom: 2px;
+                display: flex;
+                position: relative;
+                background-color: white;
+                    .image{
+                        float: left;
+                        margin-left: 0;
+                        margin-right: 45px;
+                        width: 30px;
+                        height: 30px;
+                        background-repeat:no-repeat;
+                        background-position: center center;
+                        background-size: cover;
+                        border-radius: 1px;
+                    }
+                    h6{
+                        margin-top: 5px;
+                        padding-right: 5px;
+                        max-width: 200px;
+                        color:#007bff!important;
+                    }
+                    .discussion{
+                        position: absolute;
+                        border-color : none;
+                        right: 0;
+                
+                        border-radius: 5px!important;
+                        background-color: white;
+                        @include shadow;
+                        &:hover{
+                            @include shadow2;
+                            background-color: white;
+                            color:#007bff!important;
+                        }
+                    }
+                    .enAttente,.buttonAccept, .buttonWait, .buttonOnline{
+                        position: absolute;
+                        border-color : none;
+                        right: 0;
+                        border-radius: 5px!important;
+                        @include shadow;
+                        &:hover{
+                            @include shadow2;
+                            background-color: white;
+                        }
+                    }
+                    .buttonAccept{
+                        background-color: rgb(188, 255, 205);
+                    }
+                    .buttonOnline{
+                        background-color: rgb(247, 185, 185);
+                    }
+                    .buttonWait{
+                        background-color: #007bff;
+                    }
+                }  
+        }
+    }
+    #play{
+        display: none;
+        margin: 0 auto;
+        text-align: center;
+        #rendu{
+            max-width:600px;
+            overflow:scroll;
+            #messageLive{
+                padding:0
+            }
+        }
+        #listeMessage{
+            list-style-type: none;
+        }
+        #btnDeconnection{
+            margin: 0 auto;
+            text-align: center;
+            display: none;
+            background-color: red;
+            color: white;
+            border-radius: 5px!important;
+            margin-bottom: 15px;
+                &:hover{
+                    @include shadow2;
+                    background-color: white;
+                    color:red!important;
+                }
+        }
+        #formulaire{
+            position: absolute;
+            bottom: 15px;
+            display: none;
+            background-color: white;
+            width:90%;
+            label{
+                color:black;
+            }
+            #texte{
+                @include shadow2;
+                width: 94%;
+                border-radius: 5px!important;
+            }
+            #btn{
+                @include shadow;
+                width: 94%;
+                border-radius: 5px!important;
+                &:hover{
+                    @include shadow2;
+                    background-color: white;
+                    color:#007bff!important;
+                }
+            }
+        }
+    }
+}
+
+.messageriePrivee{
+background-color: $colorOne;
+@include shadow2;
+border-radius: 10px;
+padding: 15px;
+margin-bottom: 150px;
+margin-top: 246px;
+max-height: 1400px;
+    article:first-of-type{
+        .title{
+            color: white;
+        }
+    }
+    article:nth-child(2), article:nth-child(3){
+        
+    background-color: $color3;
+    color: white;
+    border-radius: 10px;
+    @include shadow;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    padding-top: 10px;     
+         #affichageFriendsList{
+            max-width: 500px;
+            padding: 0;
+            margin:0 auto;
+            text-align:center;
+            max-width: 600px;
+            overflow: scroll;
+                .listeFriends{
+                list-style-type: none;
+                height: 30px;
+                border-radius: 5px!important;
+                padding: 0;
+                margin-bottom: 2px;
+                display: flex;
+                position: relative;
+                background-color: white;
+                text-align: center;
+                    h6{
+                    margin: 0 auto;
+                    max-width: 200px;
+                    color:#007bff!important;
+                    }
+                    .bbuttonProfile{
+                        position: absolute;
+                        border-color : none;
+                        right: 0;
+                        border-radius: 5px!important;
+                        @include shadow;
+                        &:hover{
+                            @include shadow2;
+                            background-color: white;
+                        }
+                    }
+                }
+            }
+            #renduMessagePrivee{
+            max-width:600px;
+            overflow:scroll;
+                #amisRajouter{
+                max-width: 500px;
+                padding: 0;
+                margin:0 auto;
+                text-align:center;
+                max-width: 600px;
+                overflow: scroll;
+                    .bbuttonProfile{
+                    list-style-type: none;
+                    height: 30px;
+                    border-radius: 5px!important;
+                    padding: 0;
+                    margin-bottom: 2px;
+                    display: flex;
+                    position: relative;
+                    background-color: white;
+                        h6{
+                        margin: 0 auto;
+                        max-width: 200px;
+                        color:#007bff!important;
+                        }
+                    }
+                }
+                #formulaireMessageriePrivee{ 
+                position: absolute;
+                bottom: 15px;
+                width:90%;
+                    label{
+                        color:#007bff!important;
+                    }
+                    #texte{
+                        @include shadow2;
+                        width: 94%;
+                        border-radius: 5px!important;
+                    }
+                    #btn3{
+                        @include shadow;
+                        width: 94%;
+                        border-radius: 5px!important;
+                        &:hover{
+                            @include shadow2;
+                            background-color: white;
+                            color:#007bff!important;
+                        }
+                    }
+                }
+            }
+        }
+    }

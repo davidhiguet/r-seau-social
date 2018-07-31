@@ -1,0 +1,127 @@
+extends layout
+
+block content
+  .container.modification
+    section.row
+      .col-xs-12.title
+          if (err)
+              h1= err
+          h3 MODIFIER SES INFORMATIONS
+    if (!admin)
+        form.row.text-center(method="post" enctype="multipart/form-data" action="/profile/modifyInfo/"+ user._id)
+            article.col-sm-6
+                label(for="text") Prénom / Nom : 
+                .perso
+                    input(type='text', class="zipcode" name='firstName', placeholder='Prénom', required, value=user.firstName)
+                    input(type='text', class="zipcode" name='lastName', placeholder='Nom', required, value=user.lastName)
+                br
+                label(for="text") Pseudonyme : 
+                input(type='text', name='pseudonyme', placeholder='Pseudonyme', required, value=user.pseudonyme)
+                br
+                label(for="text") Age / Genre : 
+                br
+                input(type='text', name='age', placeholder='Age', required, value=user.age)
+                br
+                if (user.genre === 'masculin')
+                .cadre.text-center
+                    .perso
+                        h6 MASCULIN 
+                        input.text-center#avatar1(type="radio" name="genre" value="masculin" checked) 
+                    .perso
+                        h6 FEMININ
+                        input#avatar2(type="radio" name="genre" value="feminin")
+                        br
+                hr
+                input(type='email', name='email', placeholder='E-mail', value=user.email)
+                br
+                hr
+                label(for="text") Mot de passe : 
+                input(type="text", name='motDePasse', placeholder='MOT DE PASSE', required, value=user.motDePasseConfirmation)
+                label(for="text") Confirmation mot de passe : 
+                input(type="text", name='motDePasseConfirmation', placeholder='MOT DE PASSE CONFIRME', required, value=user.motDePasseConfirmation)
+                if (errMDP)
+                        .red= errMDP
+                br
+            article.col-sm-6
+                label(for="text") Image de profil : 
+                br
+                input(accept="image/*" type="file"  name="image" id="image", value=user.image)
+                hr
+                label(for="text") Adresse :
+                br
+                input(type='text', name='street', placeholder='Rue', required, value=user.street)
+                br
+                .perso2
+                    input(type='text', class="zipcode" name='zip', placeholder='Code Postal', required, value=user.zip)
+                    input(type='text', class="zipcode" name='city', placeholder='Ville', required, value=user.city)
+                input(type='text', name='country', placeholder='Pays', required, value=user.country)
+                hr
+                label(for="text") Preferences
+                br
+                textarea(name="preferences" placeholder="Préférences" ) #{user.preferences}
+                label(for="text") Biographie
+                br
+                textarea(name="biographie" placeholder="Biographie") #{user.biographie}
+            .title
+                input(type='submit', value='MODIFIER')
+        .row.clear
+            .col-xs-12
+                    a.btn.btn-block(href="/profile/back/"+user.id)
+                        | Retour à l'accueil
+    if (admin)
+        form.row.text-center(method="post" enctype="multipart/form-data" action="/profile/friends/modifyInfo/"+ user._id)
+            article.col-sm-6
+                label(for="text") Prénom / Nom : 
+                .perso
+                    input(type='text', class="zipcode" name='firstName', placeholder='Prénom', required, value=user.firstName)
+                    input(type='text', class="zipcode" name='lastName', placeholder='Nom', required, value=user.lastName)
+                br
+                label(for="text") Pseudonyme : 
+                input(type='text', name='pseudonyme', placeholder='Pseudonyme', required, value=user.pseudonyme)
+                br
+                label(for="text") Age / Genre : 
+                br
+                input(type='text', name='age', placeholder='Age', required, value=user.age)
+                br
+                if (user.genre === 'masculin')
+                .cadre.text-center
+                    .perso
+                        h6 MASCULIN 
+                        input.text-center#avatar1(type="radio" name="genre" value="masculin" checked) 
+                    .perso
+                        h6 FEMININ
+                        input#avatar2(type="radio" name="genre" value="feminin")
+                        br
+                hr
+                input(type='email', name='email', placeholder='E-mail', value=user.email)
+                br
+                hr
+                label(for="text") Mot de passe : 
+                input(type="text", name='motDePasse', placeholder='MOT DE PASSE', required, value=user.motDePasseConfirmation)
+                label(for="text") Confirmation mot de passe : 
+                input(type="text", name='motDePasseConfirmation', placeholder='MOT DE PASSE CONFIRME', required, value=user.motDePasseConfirmation)
+                if (errMDP)
+                        .red= errMDP
+                br
+            article.col-sm-6
+                label(for="text") Image de profil : 
+                br
+                input(accept="image/*" type="file"  name="image" id="image", value=user.image)
+                hr
+                label(for="text") Adresse :
+                br
+                input(type='text', name='street', placeholder='Rue', required, value=user.street)
+                br
+                .perso2
+                    input(type='text', class="zipcode" name='zip', placeholder='Code Postal', required, value=user.zip)
+                    input(type='text', class="zipcode" name='city', placeholder='Ville', required, value=user.city)
+                input(type='text', name='country', placeholder='Pays', required, value=user.country)
+                hr
+                label(for="text") Preferences
+                br
+                textarea(name="preferences" placeholder="Préférences" ) #{user.preferences}
+                label(for="text") Biographie
+                br
+                textarea(name="biographie" placeholder="Biographie") #{user.biographie}
+            .title
+                input(type='submit', value='MODIFIER')

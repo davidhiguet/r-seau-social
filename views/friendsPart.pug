@@ -1,0 +1,28 @@
+.display
+    
+    .friendSearch
+        form#friendFormulaire(method="POST" action="/user/search/" + user._id)
+            label(for="text") RECHERCHE D'AMIS 
+            input(type="hidden",name="myId",id="myId",value=user._id)
+            input.form-control(type="text",name="friendSearch", id="friendSearch", placeholder="Recherchez un/une ami(e)")
+            span.input-group-btn
+            .title
+                
+                input(type="submit" value="Rechercher")
+        h6#messageError.red 
+        if(messageResult) 
+            h6=messageResult  
+        h6#messageResult
+        ul#affichageResult
+    .friends
+        if (!friend || admin)
+            h7#friendsListReceived Demandes émises
+            ul#affichageListReceived
+        hr
+        h7#friendsList Liste d'amis
+        ul#affichageFriendsList
+        if (!friend && user.email === '007@yahoo.fr')
+            h7 Liste des membres
+            ul#affichageMemberList
+        hr
+

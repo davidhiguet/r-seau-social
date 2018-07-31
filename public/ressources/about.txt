@@ -1,0 +1,6 @@
+<p><strong>Ce réseau social, ayant pour thème "Les meilleurs rôles de cinéma", a été réaliser comme projet de fin d'etude de "DEVELOPPEUR FULLSTACK JAVASCRIPT" 
+
+<p><strong>Pour voir mes différentes réalisations cliquez sur le lien ci-dessous :
+<br/>
+<a target="_blank" title="david higuet website" href="http://davidhiguet.com">davidhiguet.com<a/>
+

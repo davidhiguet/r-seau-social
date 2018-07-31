@@ -1,0 +1,14 @@
+#messagePart
+    h4 MESSAGE(S)
+    form#messageCreation(method="POST" action="/")
+        .input-group
+            label.sr-only(for="postText") Nouveau message
+            input(type="hidden", name="messageCreator", id="messageCreator" ,value= user.pseudonyme)
+            input(type="hidden", name="imageCreator", id="imageCreator" ,value= user.image)
+            input(type="hidden",name="messageCreatorId",id="messageCreatorId",value= user._id)
+            input.form-control(type="text",name="messageText",id="textCreate", placeholder="Écrivez quelque chose...")
+            span.input-group-btn
+        input(type="submit", value= "ENVOYER" id="textCreate")
+        h5.red#messageCreationError
+    hr
+    ul#affichageMessageList.user_id

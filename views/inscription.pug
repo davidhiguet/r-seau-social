@@ -1,0 +1,66 @@
+extends layout
+
+block content
+    .container.inscription
+        section.row
+            .col-xs-12.title
+                if (err)
+                    h1= err
+                h3 INSCRIPTION
+        form.row.text-center(action='/inscription', enctype='multipart/form-data', method='post')
+            article.col-sm-6
+                .perso
+                    input(type='text', class="zipcode" name='firstName', placeholder='Prénom', required)
+                    input(type='text', class="zipcode" name='lastName', placeholder='Nom', required)
+                br
+                input(type='text', name='pseudonyme', placeholder='Pseudonyme', required)
+                br
+                label(for="text") Age / Genre : 
+                br
+                input(type='text', name='age', placeholder='Age', required)
+                br
+                .cadre.text-center
+                    .perso
+                        h6 MASCULIN
+                        input.text-center#avatar1(type="radio" name="genre" value="masculin") 
+                    .perso
+                        h6 FEMININ
+                        input#avatar2(type="radio" name="genre" value="feminin")
+                        br
+                hr
+                input(type='email', name='email', placeholder='E-mail' required)
+                if(errMail)
+                    .red= errMail
+                br
+                hr
+                input(type='password', name='motDePasse', placeholder='MOT DE PASSE', required)
+                input(type='password', name='motDePasseConfirmation', placeholder='MOT DE PASSE CONFIRME', required)
+                if (errMDP)
+                    .red= errMDP
+                br
+            article.col-sm-6
+                label(for="text") Image de profil : 
+                br
+                input(accept="image/*" type="file"  name="image" id="image")
+                hr
+                label(for="text") Adresse :
+                br
+                input(type='text', name='street', placeholder='Rue', required)
+                br
+                .perso2
+                    input(type='text', class="zipcode" name='zip', placeholder='Code Postal', required)
+                    input(type='text', class="zipcode" name='city', placeholder='Ville', required)
+                input(type='text', name='country', placeholder='Pays', required)
+                hr
+                label(for="text") Preferences
+                br
+                textarea(name="preferences" placeholder="Préférences")
+                label(for="text") Biographie
+                br
+                textarea(name="biographie" placeholder="Biographie")
+            .title
+                input(type='submit', value='INSCRIPTION')
+        .row.clear
+            .col-xs-12
+                    a.btn.btn-block(href="/")
+                        | Retour à l'accueil

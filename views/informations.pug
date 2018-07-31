@@ -1,0 +1,59 @@
+ul.information
+    li
+        div.image(style="background-image: url(/images/pic/"+user.image+")")
+        p #{user.pseudonyme} 
+        hr 
+    li
+        span 
+        .displayFlex
+            h5 Email:  
+            p &ensp;#{user.email} 
+        hr 
+    li 
+        span 
+        .displayFlex
+            h5 Prenom :  
+            p &ensp;#{user.firstName} 
+        .displayFlex
+            h5 Nom :  
+            p &ensp;#{user.lastName}
+        hr
+    li 
+        span 
+        .displayFlex
+            h5  Age : 
+            p &ensp;&ensp;#{user.age} ans
+        .displayFlex
+            h5  Genre : 
+            p &ensp;#{user.genre} 
+        hr
+    li 
+        span 
+        h5 Habite à :  
+        p #{user.street} 
+        p #{user.zip} #{user.city} 
+        p #{user.country}
+        hr
+    li 
+        span 
+        if (user.preferences)
+            h5 Préférences :  
+            p #{user.preferences} 
+        if (user.biographie)
+            h5 Biographie :
+            p #{user.biographie} 
+        hr
+div
+    if (!friend )
+        .button
+            a(href="/profile/modification/"+ user._id)
+                | MODIFICATION
+        .button
+            a(href="/profile/logout")
+                | DECONNEXION
+    if (admin)
+        .button
+            a(href="/profile/admin/modification/"+ user._id)
+                | MODIFICATION
+
+    

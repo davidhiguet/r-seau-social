@@ -1,0 +1,87 @@
+label{
+	color: white;
+}
+.modification{
+margin-top: 246px;
+background-color: $color3;	
+display: block;
+text-align: center;
+@include shadow2;
+border-radius: 10px;
+padding: 15px;
+margin-bottom: 150px;
+	.title{
+		width: 100%;
+		text-align: center
+	}
+	h3,h6{
+		color: rgb(60, 211, 105)
+	}
+	article{
+		input, textarea{
+			width: 92%;
+			padding: 1em 1em 1em 1em;
+			font-size: 0.8em;
+			margin: 1em 0;
+			outline: none;
+			color: rgb(60, 211, 105);
+			border: none;
+			letter-spacing: 1px;
+			text-align:center;
+			border-radius: 10px;
+			&:focus, &:active { 
+				background-color: white;
+			}
+		}
+		::-webkit-input-placeholder{
+			color:$colorPoliceTwo;
+		}
+	}
+	input[type="submit"] {
+		outline: none;
+		padding: 0.9em 0;
+		width: 50%;
+		text-align: center;
+		font-size: 1em;
+		margin-top: 1em;
+		border: none;
+        color: black;
+        background-color: white;
+		cursor: pointer;
+		box-shadow: 0px 2px 1px rgba(28, 28, 29, 0.42);
+		border-radius: 22px;
+		@include shadow;
+		&:hover{
+			@include shadow2;
+			background-color: rgb(60, 211, 105);
+			color:white;
+		}
+	}
+	.zipcode{
+		width: 46.2%;
+	}
+	.cadre{
+		display: flex;
+		margin: 0 auto;
+		text-align: center;
+		margin-left: 1em;
+		.perso{
+			width: 100%;
+			position: relative;
+			margin: 0 auto;
+			h6{
+				margin-top: 0.7em;
+				margin-left: 2.5em;
+			}
+			input[type="radio"]{
+				margin-right: 1em;
+				position: absolute;
+				right: 50px;
+				width: 50px;
+			}
+			display: flex;
+			margin: 0.5em;
+			margin: 0 auto;
+		}
+	}
+}

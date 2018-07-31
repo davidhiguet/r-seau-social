@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  .container
+      section.row.home
+        .col-sm-12.text-center
+            article.col-lg-6.offset-lg-3.text-center
+                h3 RENTREZ VOTRE EMAIL !
+                form(action='/mdp', method='post')
+                    input(type='text', name='email', placeholder='E-mail', required='')
+                    .tp          
+                    if (err)
+                        .red= err
+                    hr
+                    input(type='submit', value='VERIFICATION')
+                    if (confirmation)
+                        h5= confirmation

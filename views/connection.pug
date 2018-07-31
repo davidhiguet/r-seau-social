@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  .container
+      section.row.home
+        .col-sm-12.text-center
+            article.col-lg-6.offset-lg-3.text-center
+                h3 CONNECTEZ-VOUS !
+                form(action='auth', method='post')
+                    input(type='text', name='email', placeholder='E-mail', required='')
+                    input(type='password', name='password', placeholder='Password', required='')
+                    .tp          
+                    if (err)
+                        .red= err
+                    hr
+                    input(type='submit', value='LOGIN NOW')
+                a(href="/mdp")
+                    | Mot de passe perdu     

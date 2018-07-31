@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  .container
+    section.row.messageriePrivee
+        article.col-md-12.text-center
+            h2.title MESSAGERIE PRIVEE
+        article#listingFriend.col-md-6.text-center
+            hr
+            h3 LISTE DES AMIS
+            hr
+            ul#affichageFriendsList
+        article.col-md-6.text-center
+            h5#mred.red
+            h5#red.red
+            #renduMessagePrivee
+                ul#amisRajouter
+                form#formulaireMessageriePrivee(name='monform' method='post')
+                    input#ids(type='hidden' name='id', value=user._id)
+                    input#pseud(type='hidden' name='pseudo', value=user.pseudonyme)
+                    br
+                    label(for='text') RENTREZ LE THEME DE LA MESSAGERIE
+                    input#te(type='text' name='texte')
+                    br
+                    input#btn3(type='submit' value='envoyer')
+        article.col-md-12.text-center
+            h2.title LISTE DES MESSAGES
+    script(src="/socket.io/socket.io.js")
+    script(src='/javascripts/socketClientMessageriePrivee.js')

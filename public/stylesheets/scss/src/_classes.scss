@@ -1,0 +1,174 @@
+.date{
+    background-color: red;
+    color: white;
+    font-size: 2em;
+    font-weight: bold;
+}
+// class pour les constructions de planete
+%planeteProp{
+    z-index: 1000;
+    width: 65px;
+    height: 65px;
+    position: absolute;
+    left: 650px;
+    top: 250px;
+    border-radius: $dimRadius;
+    background-image: radial-gradient(circle at center, #fdac7f 0, #7e6051 100%);
+            
+}
+// class pour les constructions de pieces
+%centreProp{
+        position : absolute;
+        overflow : hidden;
+        top : 250px;
+        left : 650px;
+}
+%masqueProp{
+    top : 0px;
+    left : 0px;
+    width : 43px;
+    height : 42px;
+    position : relative;
+    margin : 0 auto;
+}
+%spriteProp{
+    width: 400px;
+    height: 676px;
+    top : -284px;
+    left : -16px;
+    position : absolute;
+    z-index: 1000;
+    opacity: 1;
+}
+/*
+%world{
+-webkit-animation: spin1 2s initial linear;
+-moz-animation: spin1 2s initial linear;
+animation: spin1 2s initial linear!important;
+}
+ // keyframe rotation planete
+@-webkit-keyframes spin1 {
+0% { -webkit-transform: rotate(0deg);}
+100% { -webkit-transform: rotate(360deg);}
+}
+@-moz-keyframes spin1 {
+0% { -moz-transform: rotate(0deg);}
+100% { -moz-transform: rotate(360deg);}
+}
+@keyframes spin1 {
+0% { transform: rotate(0deg);}
+100% { transform: rotate(360deg);}
+} 
+*/
+// keyframe color planete
+
+@-webkit-keyframes mymove0 {
+    0% {background-image: radial-gradient(circle at center, #fdac7f 0, #7e6051  100%);}
+    5% {background-image: radial-gradient(circle at center, #fdac7f 2%, #7e6051  98%);}
+    100% {background-image: radial-gradient(circle at center, #fdac7f 5%, #7e6051  95%);}
+}
+@-moz-keyframes mymove0 {
+    0% {background-image: radial-gradient(circle at center, #fdac7f 0, #7e6051  100%);}
+    5% {background-image: radial-gradient(circle at center, #fdac7f 2%, #7e6051  98%);}
+    100% {background-image: radial-gradient(circle at center, #fdac7f 5%, #7e6051  95%);}
+}
+@keyframes mymove0 {
+    0% {background-image: radial-gradient(circle at center, #fdac7f 0, #7e6051  100%);}
+    5% {background-image: radial-gradient(circle at center, #fdac7f 2%, #7e6051  98%);}
+    100% {background-image: radial-gradient(circle at center, #fdac7f 5%, #7e6051  95%);}
+}
+
+@-webkit-keyframes mymove1 {
+    0% {background-image: radial-gradient(circle at center, #ffaa4b 0, #d77331 100%);}
+    100% {background-image: radial-gradient(circle at center, #ffaa4b 5%, #d77331 95%);}
+}
+@-moz-keyframes mymove1 {
+    0% {background-image: radial-gradient(circle at center, #ffaa4b 0, #d77331 100%);}
+    100% {background-image: radial-gradient(circle at center, #ffaa4b 5%, #d77331 95%);}
+}
+@keyframes mymove1 {
+    0% {background-image: radial-gradient(circle at center, #ffaa4b 0, #d77331 100%);}
+    100% {background-image: radial-gradient(circle at center, #ffaa4b 5%, #d77331 95%);}
+}
+
+@-webkit-keyframes mymove2 {
+    0% {background-image: radial-gradient(circle at center, #c2bcbe 0, #8e898e 100%);}
+    100% {background-image: radial-gradient(circle at center, #c2bcbe 5%, #8e898e 95%);}
+}
+@-moz-keyframes mymove2 {
+    0% {background-image: radial-gradient(circle at center, #c2bcbe 0, #8e898e 100%);}
+    100% {background-image: radial-gradient(circle at center, #c2bcbe 5%, #8e898e 95%);}
+}
+@keyframes mymove2 {
+    0% {background-image: radial-gradient(circle at center, #c2bcbe 0, #8e898e 100%);}
+    100% {background-image: radial-gradient(circle at center, #c2bcbe 5%, #8e898e 95%);}
+}
+
+@-webkit-keyframes mymove3 {
+    0% {background-image: radial-gradient(circle at center, #b89565 0, #efd2b1 100%);}
+    100% {background-image: radial-gradient(circle at center, #b89565 5%, #efd2b1 95%);}
+}
+@-moz-keyframes mymove3 {
+    0% {background-image: radial-gradient(circle at center, #b89565 0, #efd2b1 100%);}
+    100% {background-image: radial-gradient(circle at center, #b89565 5%, #efd2b1 95%);}
+}
+@keyframes mymove3 {
+    0% {background-image: radial-gradient(circle at center, #b89565 0, #efd2b1 100%);}
+    100% {background-image: radial-gradient(circle at center, #b89565 5%, #efd2b1 95%);}
+}
+
+@-webkit-keyframes mymove4 {
+    0% {background-image: radial-gradient(circle at center, #5c584f 0, #88847b 100%);}
+    100% {background-image: radial-gradient(circle at center, #5c584f 5%, #88847b 95%);}
+}
+@-moz-keyframes mymove4 {
+    0% {background-image: radial-gradient(circle at center, #5c584f 0, #88847b 100%);}
+    100% {background-image: radial-gradient(circle at center, #5c584f 5%, #88847b 95%);}
+}
+@keyframes mymove4 {
+    0% {background-image: radial-gradient(circle at center, #5c584f 0, #88847b 100%);}
+    100% {background-image: radial-gradient(circle at center, #5c584f 5%, #88847b 95%);}
+}
+
+@-webkit-keyframes mymove5 {
+        0% {background-image: radial-gradient(circle at center, #76aff7 0, #5eafc0 100%);}
+    50% {background-image: radial-gradient(circle at center, #76aff7 10%, #5eafc0 100%);}
+     100% {background-image: radial-gradient(circle at center, #76aff7 20%, #5eafc0 100%);}
+}
+@-moz-keyframes mymove5 {
+        0% {background-image: radial-gradient(circle at center, #76aff7 0, #5eafc0 100%);}
+    50% {background-image: radial-gradient(circle at center, #76aff7 10%, #5eafc0 95%);}
+     100% {background-image: radial-gradient(circle at center, #76aff7 20%, #5eafc0 90%);}
+}
+   
+@keyframes mymove5 {
+        0% {background-image: radial-gradient(circle at center, #76aff7 0, #5eafc0 100%);}
+    50% {background-image: radial-gradient(circle at center, #76aff7 10%, #5eafc0 100%);}
+     100% {background-image: radial-gradient(circle at center, #76aff7 20%, #5eafc0 100%);}
+}
+
+@-webkit-keyframes mymove6 {
+    0% {background-image: radial-gradient(circle at center, #5a7ae6  0, #77b0f7 100%);}
+    100% {background-image: radial-gradient(circle at center, #5a7ae6  5%,#77b0f7 95%);}
+}
+@-moz-keyframes mymove6 {
+    0% {background-image: radial-gradient(circle at center, #5a7ae6 0, #77b0f7 100%);}
+    100% {background-image: radial-gradient(circle at center #5a7ae6 5%, #77b0f7 95%);}
+}
+@keyframes mymove6 {
+    0% {background-image: radial-gradient(circle at center,#5a7ae6  0, #77b0f7 100%);}
+    100% {background-image: radial-gradient(circle at center,#5a7ae6  5%,#77b0f7  95%);}
+}
+
+@-webkit-keyframes mymove7 {
+    0% {background-image: radial-gradient(circle at center, #274e70  0, #f7ffee 100%);}
+    100% {background-image: radial-gradient(circle at center, #274e70  5%,#f7ffee 95%);}
+}
+@-moz-keyframes mymove7 {
+    0% {background-image: radial-gradient(circle at center, #274e70 0, #f7ffee 100%);}
+    100% {background-image: radial-gradient(circle at center #274e70 5%, #f7ffee 95%);}
+}
+@keyframes mymove7 {
+    0% {background-image: radial-gradient(circle at center,#274e70  0, #f7ffee 100%);}
+    100% {background-image: radial-gradient(circle at center,#274e70  5%,#f7ffee  95%);}
+}
