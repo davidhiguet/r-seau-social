@@ -2,13 +2,14 @@
 const User = require('./bdd/user');
 
 module.exports.connection = (io, socket, user) => {
-    //on start
+    
     socket.on("startSocket", () => {
         User.findOne({ _id: user._id }).then(myself => {
             myself.messagingAsked = [];
             myself.messaging = [];
-            myself.messagingReceived = [];
             myself.messagingRoom = "notDefined";
+
+            console.log("myself.messagingAsked", myself.messagingReceived);
             return myself.save()
             //console.log("user.messagingAsked", myself.messagingRoom);
 
@@ -91,13 +92,14 @@ module.exports.connection = (io, socket, user) => {
             return User.findOne({ _id: user._id });
         })
         .then(usr => {
-            user = usr;
-            console.log("3");
-            if (usr.messagingAsked.indexOf(usr._id) > 1) {
-                throw new Error("friend request already sent");
+            user = myself;
+            
+            if (myself.messagingAsked.indexOf(myself._id) > 1) {
+                
             }
             console.log("askForDiscussion3", user._id);
-            usr.messagingAsked.push(idFromFriend);
+            myself.messagingAsked.push(idFromFriend);
+            
             return user.save();
         })
         .then((myself) => {
@@ -119,7 +121,6 @@ module.exports.connection = (io, socket, user) => {
         socket.emit("openDiscussionPart", socket.id);
         //console.log("disc2");
         User.findOne({ _id: user._id }).then(myself => {
-            clients[socket.id] = socket;
             room = firstJoinRoom(socket, userFriendId);
         })
         .catch(err => {
@@ -127,7 +128,6 @@ module.exports.connection = (io, socket, user) => {
         });
     });
 
-    var clients = {};
     var availableRooms = [];
     var room;
 
@@ -178,7 +178,6 @@ module.exports.connection = (io, socket, user) => {
         socket.emit("openDiscussionPart", socket.id);
         User.findOne({ _id: user._id }).then(myself => {
             //console.log("second2", myself.email);
-            clients[socket.id] = socket;
             
             return myself.save()
 
@@ -186,8 +185,6 @@ module.exports.connection = (io, socket, user) => {
             socket.roomId = roomId;
             socket.join(roomId);
             socket.emit("joinRoom", roomId);
-
-            clients[socket];
             io.to(roomId).emit("roomFull", roomId);
 
 
@@ -207,14 +204,14 @@ module.exports.connection = (io, socket, user) => {
         })
         .then((person) => {
 
-            if (person.messagingRoom !== "notDefined") {
+            if (person.messagingRoom !== "notDefined" || user.messagingRoom == undefined) {
 
                 User.findOne({ '_id': user._id }).then((myself) => {
                     myself.messagingRoom = person.messagingRoom;
                     myself.messaging.push(friendId);
                     myself.messagingReceived.pull(friendId);
                     socket.emit("startSocket", myself);
-                    myself.save()
+                    user = myself.save()
                     let roomId = person.messagingRoom;
                     secondJoinRoom(roomId);
                 }).catch((err) => {
@@ -224,14 +221,15 @@ module.exports.connection = (io, socket, user) => {
             } else {
                 User.findOne({ '_id': user._id }).then((myself) => {
                     myself.messagingReceived.pull(person._id)
-                    //myself.messaging.pull(person._id);
-                    return myself.save()
+                    
+                    user = myself.save()
+                    return user
                 })
-                .then(() => {
+                .then((me) => {
 
                     let err = "Votre correspondant s'est déconnecté";
                     socket.emit("roomDeconnectionBefore", err);
-                    socket.emit("startSocket", user);
+                    socket.emit("startSocket", me);
 
                 }).catch((err) => {
                     console.log(err);
@@ -256,23 +254,37 @@ module.exports.connection = (io, socket, user) => {
             return member._id
         })
         .then(mid => {
-            console.log("exitMember2", mid);
+   
             User.findOne({ _id: user._id }).then(myself => {
-                
-                myself.messaging.pull(mid);
-                user = myself.save();
-                return user
+
+                if (myself.messaging.indexOf(person._id) >= 0) {
+                    myself.messaging.pull(mid);
+                }
+                if (myself.messagingAsked.indexOf(person._id) >= 0 ) {
+                    myself.messagingAsked.pull(mid);
+                }
+                if (myself.messagingReceived.indexOf(person._id) >= 0 ) {
+                    myself.messagingReceived.pull(mid);
+                }
+                user = myself
+                return myself.save();
               
             });
         })
-        .then(my => {
-            console.log("exitMember3", user);
-            socket.emit("startSocket", user);
+        .then((my) => {
+            if(user.promise){
+                console.log("exitMember3", user.promise);
+            console.log("exitMember2", myself.email);
+                socket.emit("startSocket", user.promise);
+            } else {
+                socket.emit("startSocket", me);
+            }
+            
         });
     });
     //  Accept you are removing from the discusion you were
     socket.on("remove", (data) => {
-
+        console.log("exitMember3", data);
         User.findOne({ "pseudonyme": data.obj.user }).then(myself => {
             console.log("exitMember3", myself);
                 myself.messaging= [];
@@ -286,10 +298,11 @@ module.exports.connection = (io, socket, user) => {
             console.log("roomDeconnection1");
             socket.emit("roomDeconnected");
             socket.emit("startSocket", myself);
-            delete clients[socket];
+            
             socket.leave(data.obj.roomId);
             console.log("roomDeconnection2");
             io.to(data.obj.roomId).emit('oneDeconnect', data.obj.user);
+        
         })
         .catch((err) => {
             console.log(err);
