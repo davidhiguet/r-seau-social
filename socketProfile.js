@@ -9,6 +9,11 @@ module.exports.connection = (io, socket, user) => {
 
       if (myself !== null || myself !== undefined && socket.myEmail == undefined){
         myself.connection(socket.id);
+        myself.messagingReceived = [];
+        myself.messaging = [];
+        myself.messagingRoom = "notDefined";
+        myself.save()
+        user = myself;
         console.log("myself.connected", myself.connected);
       }
     })
@@ -72,7 +77,7 @@ module.exports.connection = (io, socket, user) => {
   let friendReceived = [];
   let tableauReceived = [];
   friendReceived = user.friendsReceived;    
-  console.log("friendsReceiveduser.friendsReceived", );
+  console.log("friendsReceiveduser.friendsReceived");
     if (friendReceived.length != 0 ) {
       friendReceived.map(friendR => {
         User.findOne({ _id: friendR })
@@ -98,26 +103,26 @@ module.exports.connection = (io, socket, user) => {
   });   
   /////////////  send result from friend search  //////////////////
   socket.on('friendSearch', (data) => {
-
+console.log("socket.email", socket.myEmail);
     let result = [];
-
+    if( socket.myEmail == undefined ){
       User.find({ "pseudonyme": data.pseudoSearch }).then((res) => {
 
         result = res;
-        console.log("result", res)
+        
           return User.findOne({ "_id": user._id });
 
         }).then((myself) => {
 
           characterSearchResult = []
           let relation = "";
-          console.log("result", myself._id);
+          //console.log("result", myself._id);
           result.map(person => {
-            console.log("person._id", person._id);
+            //console.log("person._id", person._id);
             if (!myself._id.equals(person._id)) {
-              console.log("myself", myself.friends);
-              console.log("myselfAsked", myself.friendsAsked);
-              console.log("myselfReceived", myself.friendsReceived);
+              //console.log("myself", myself.friends);
+              //console.log("myselfAsked", myself.friendsAsked);
+              //console.log("myselfReceived", myself.friendsReceived);
               if (myself.friends.indexOf(person._id) >= 0) {
                 relation = "friend";
               } else if (myself.friendsAsked.indexOf(person._id) >= 0 && myself.friendsAsked != undefined) {
@@ -140,6 +145,7 @@ module.exports.connection = (io, socket, user) => {
         console.log(err);
         socket.emit("friendSearch", []);
     });
+    }
 
   });
   
@@ -373,13 +379,13 @@ module.exports.connection = (io, socket, user) => {
     let tableauFriends = [];
     friends = user.friends;
     
-    if (friends.length != 0) {
+    if (friends.length != 0 || socket.myEmail != undefined) {
       friends.map(friend => {
 
         User.findOne({ _id: friend }).then(resultOne => {
-          if (resultOne !== null && socket.myEmail !== undefined) {
+          if (resultOne != null ) {
 
-        //console.log("sharing.length", friends.length);
+            //console.log("sharing.length", friends.length);
             let friendDispatch = { pseudo: resultOne.pseudonyme, email: resultOne.email, id: resultOne._id, admin: resultOne.admin, image: resultOne.image };
 
             tableauFriends.push(friendDispatch);
@@ -415,7 +421,7 @@ module.exports.connection = (io, socket, user) => {
 
           if (me.friends.indexOf(person._id) >= 0) {
 
-            msgBack = "Vous avez déja cette personne comme ami.";
+            msgBack = "Vous avez déjà cette personne comme ami.";
             socket.emit("memberShared", msgBack);
 
           } else if (me.friendsAsked.indexOf(person._id) >= 0) {
