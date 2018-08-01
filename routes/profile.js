@@ -107,7 +107,7 @@ router.post('/auth',
   passport.authenticate('local', {
     failureRedirect: '/profile/loginFailure',
     successRedirect: '/profile/loginSuccess'
-  },
+  }
 ));
 
 router.get('/loginFailure', function (req, res, next) {
@@ -121,7 +121,7 @@ router.get('/loginSuccess', function (req, res, next) {
 
   user = req.user
   res.io.once("connection", socket => {
-    SocketProfile.connection(res.io, socket, user);
+    SocketProfile.connection(socket, user);
   });
 
   req.session.userId = req.user._id;
@@ -149,8 +149,7 @@ router.get("/back/:userId", (req, res, next) => {
   User.findOne({ '_id': req.params.userId })
     .then(user => {
       res.io.once("connection", socket => {
-        socket.removeAllListeners();
-        SocketProfile.connection(res.io, socket, user);
+        SocketProfile.connection(socket, user);
       });
       return res.render("profile", { user });
     })
@@ -232,8 +231,8 @@ router.post('/modifyInfo/:userId', formidableReq, function (req, res, next) {
 
           console.log("INSIDE2 ");
           res.io.once("connection", socket => {
-            socket.removeAllListeners();
-            SocketProfile.connection(res.io, socket, user);
+  
+            SocketProfile.connection(socket, user);
           })
           return res.render("profile", { user });
 
@@ -254,8 +253,7 @@ router.get("/friend/:userId", (req, res, next) => {
         socket.myPseudo = myInfo.pseudonyme,
         socket.myImage = myInfo.image,
         socket.myEmail = myInfo.email,
-        socket.removeAllListeners();
-        SocketProfile.connection(res.io, socket, user);
+        SocketProfile.connection(socket, user);
       });
 
       let friend = true;
@@ -277,20 +275,22 @@ router.get("/friend/:userId", (req, res, next) => {
 router.get("/monProfile/", (req, res, next) => {
   if (req.user) {
     user = req.user;
+
     res.io.once("connection", socket => {
-      socket.removeAllListeners();
-      SocketProfile.connection(res.io, socket, user);
+      SocketProfile.connection(socket, user);
     });
-    
     return res.render("profile", { user });
-  }
+
+  } else {
   var error = "Retour en arrière impossible, veuillez-vous reconnectez !!!";
   return res.render("profile", { error });
+  
+  }
 });
 
 
 router.get("/acceuil/:userId", function(req, res, next) {
-  var globalMsg;
+
   var globalCnt;
   Promise.all([
     User.find({ connected: { $ne: "notconnected" } })
@@ -298,22 +298,9 @@ router.get("/acceuil/:userId", function(req, res, next) {
       .then(number => {
         globalCnt = number;
       }),
-    User.find("messag").then(number => {
-      let nbMsg = 0;
-
-      number.map(nb => {
-        if (nb.messag.length != 0) {
-          nbMsg = nbMsg + Number(nb.messag.length);
-
-          console.log("taba", nbMsg);
-        }
-        globalMsg = nbMsg;
-      });
-    })
   ])
   User.find({ '_id': req.params.userId }).then(myself => {
     let globalProperty = {};
-    globalProperty.messages = globalMsg;
     globalProperty.connected = globalCnt;
     myself.map(me =>{
       console.log(me);
@@ -331,7 +318,6 @@ router.get('/messagerie/:userId', (req, res, next) => {
   User.findOne({ '_id': req.params.userId })
     .then((user) => {
       res.io.once("connection", socket => {
-        socket.removeAllListeners();
         SocketMessagerie.connection(res.io, socket, user);
       });
       return res.render("messagerie", { user });
@@ -427,11 +413,11 @@ router.post('/friends/modifyInfo/:userId', formidableReq, function (req, res, ne
       }
         console.log("INSIDE2 ");
         res.io.once("connection", socket => {
-          socket.removeAllListeners();
+
             socket.myPseudo = user.pseudonyme,
             socket.myImage = user.image,
             socket.myEmail = user.email,
-            SocketProfile.connection(res.io, socket, user);
+            SocketProfile.connection(socket, user);
         })
         let friend = true;
         let admin = true;
@@ -446,7 +432,6 @@ router.get('/messagerieprivee/:userId', (req, res, next) => {
   User.findOne({ '_id': req.params.userId })
     .then((user) => {
       res.io.once("connection", socket => {
-        socket.removeAllListeners();
         SocketMessageriePrivee.connection(res.io, socket, user);
       });
       return res.render("messageriePrivee", { user });
@@ -454,29 +439,34 @@ router.get('/messagerieprivee/:userId', (req, res, next) => {
     .catch((e) => {
       err = e
       res.io.once("connection", socket => {
-        socket.removeAllListeners();
-        SocketProfile.connection(socket, user);
+        SocketProfile.connection(user);
       });
       return res.render("profile", { err });
     });
 });
 //***************** WHEN YOU WANT TO QUIT *************************//
 
-router.get("/logout", function (req, res, next) {
-  console.log("logout ", req.user);
-  user= req.user
-  if ( !req.user ){
+router.get("/logout/:userId", function (req, res, next) {
+
+  if (req.params.userId == undefined){
     req.session.destroy(function (err) {
       if (err) {
         return next(err);
       } else {
+        req.logout();
+
         return res.redirect("/profile");
       }
     })
+
   } else {
-    User.findOne({ '_id': user._id }).then((user) => {
-      user.connection("notconnected");
-      user.save()
+
+
+    User.findOne({ '_id':  req.params.userId }).then((user) => {
+     
+        user.connection("notconnected");
+        user.save()
+     
     }).then(()=>{
       req.session.destroy(function (err) {
         if (err) {
@@ -487,8 +477,9 @@ router.get("/logout", function (req, res, next) {
           return res.redirect("/profile");
         }
       })
-    })
-  }
+     })   
+    }
+  
 });
 
 
