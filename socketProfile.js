@@ -1,6 +1,6 @@
 const User = require('./bdd/user');
 
-module.exports.connection = (io, socket, user) => {
+module.exports.connection = (socket, user) => {
 
 
   socket.on('connected', (user) => {
