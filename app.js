@@ -23,7 +23,7 @@ mongoose.connect(
     keepAlive: true,
     reconnectTries: 10
   }
-).then((db) => {
+).then(() => {
   console.log('Database connected', db);
   return User.updateMany({}, { $set: { connected: 'notconnected' } });
 })
